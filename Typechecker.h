@@ -25,6 +25,10 @@ public:
   void FindReferencesDec(Node *tree);
   void FindReferencesParams(Node *params, int f_count);
   void FindReferencesComp(Node *compStmtNode, string prefix);
+
+  bool CheckDec(Node *tree);
+  bool CheckFunc(Node *tree);
+  bool CheckExp(Node *tree);
 };
 
 #endif

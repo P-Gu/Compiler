@@ -171,9 +171,6 @@ void FactorNode::printNode(){
     if (this->read!=NULL){
         this->read->printNode();
     }
-    /*cout << (this->minus ? "minus" : "noMinus") << endl;
-    cout << (this->isPointer ? "isPointer" : "notPointer") << endl;
-    cout << (this->isAddr ? "isAddress" : "notAddress") << endl;*/
 }
 
 FNode::FNode(int lineNum, int kind, Node* next, FactorNode* factor, bool minus, bool isPointer, bool isAddr): Node(lineNum, kind, next) {

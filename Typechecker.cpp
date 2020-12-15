@@ -70,6 +70,59 @@ void Typechecker::FindReferencesComp(Node *compStmtNode, string prefix){
 }
 
 
+bool Typechecker::CheckDec(Node *tree) {
+    while (tree!=null) {
+        if (tree->kind==Node::FUNDEC) {
+            if (!CheckFunc(Node *tree)) return false;
+        }
+        tree = tree->next;
+    }
+    return true;
+}
+
+bool Typechecker::CheckFunc(Node *tree) {
+    string exp_check = CheckExp(((FunDecNode *)tree)->params);
+    if (exp_check.compare("int")==0) {
+        StmtNode *stmtNode = ((FunDecNode *)tree)->compStmtNode;
+        while (stmtNode!=null) {
+            stmtNode = stmtNode->next;
+        }
+    } else if (exp_check.compare("str")==0) {
+
+    }
+    return true;
+}
+
+string Typechecker::CheckExp(Node *tree, string prefix) {
+    if (tree->kind==Node::OPEXP) {
+        OpExpNode *opExpNode = (OpExpNode *)tree;
+        if (opExpNode->expNode!=NULL) {
+            if (CheckExp(opExpNode->expNode).compare("int")==0) {
+                if (opExpNode->expNode2!=NULL) {
+                    if (CheckExp(opExpNode2->expNode).compare("int")==0) {
+                        return "int";
+                    } else throw exception;
+                }
+                return "int";
+            }
+            else if (CheckExp(opExpNode->expNode).compare("str")==0) {
+                if (opExpNode->expNode2!=NULL) {
+                    if (CheckExp(opExpNode2->expNode).compare("str")==0) {
+                        return "str";
+                    } else throw exception;
+                }
+                return "str";
+            }
+        }
+        
+    }
+    else if (tree->kind==Node::ENODE) {
+
+    }
+    return true;
+}
+
+
 
 int main () {
     try {
